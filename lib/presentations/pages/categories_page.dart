@@ -32,7 +32,6 @@ class _categoriesPageState extends State<categoriesPage> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 29, 27, 27),
-        
         appBar: AppBar(
           backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
           title: Text(
@@ -48,7 +47,7 @@ class _categoriesPageState extends State<categoriesPage> {
             category: category[i],
             meal: meals[i],
           ),
-          itemCount: meals.length,
+          itemCount: category.length,
         ));
   }
 }
