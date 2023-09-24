@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pets_app/presentations/pages/categories_page.dart';
+import 'package:pets_app/presentations/pages/favorites_page.dart';
 import 'package:pets_app/presentations/pages/form_page.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home:categoriesPage(),
+      home: categoriesPage(),
     );
   }
 }

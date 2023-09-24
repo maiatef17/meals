@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pets_app/data/data%20source/data_source.dart';
 import 'package:pets_app/data/models/category.dart';
 import 'package:pets_app/data/models/meals.dart';
+import 'package:pets_app/presentations/pages/add_meal.dart';
 import 'package:pets_app/presentations/pages/meals_info_page.dart';
 
 class MealsPage extends StatelessWidget {
@@ -12,31 +13,40 @@ class MealsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[900],
-        appBar: AppBar(
-          //leading: Icon(Icons.arrow_back_ios,color: Colors.white,),
-          backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
-          title: Text(
-            '${category.name}',
-            style: const TextStyle(color: Colors.white),
+      backgroundColor: Colors.grey[900],
+      appBar: AppBar(
+        //leading: Icon(Icons.arrow_back_ios,color: Colors.white,),
+         actions: [
+          GestureDetector(
+            onTap: () => Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => AddMeal())),
+                child: Icon(Icons.add,color: Colors.white,),
           ),
+          
+        ],
+        backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
+        title: Text(
+          '${category.name}',
+          style: const TextStyle(color: Colors.white),
         ),
-        body: ListView.builder(
-          //itemCount: meals.length,
-          itemCount: meals
-              .where((m) {
-                return m.mid == category.id;
-              })
-              .toList()
-              .length,
+      ),
+      body: ListView.builder(
+        //itemCount: meals.length,
+        itemCount: meals
+            .where((m) {
+              return m.mid == category.id;
+            })
+            .toList()
+            .length,
 
-          itemBuilder: (context, i) => MealsWidget(
+        itemBuilder: (context, i) => MealsWidget(
           //  meal: meals[i],
-              meal: meals.where((m) {
-                return m.mid == category.id;
-              }).toList()[i],
-          ),
-        ));
+          meal: meals.where((m) {
+            return m.mid == category.id;
+          }).toList()[i],
+        ),
+      ),
+    );
   }
 }
 

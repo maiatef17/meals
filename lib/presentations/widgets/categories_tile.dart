@@ -21,7 +21,6 @@ class CategoriesTile extends StatelessWidget {
               builder: (context) => MealsPage(
                     meal: meal,
                     category: category,
-                    
                   )),
         );
       },

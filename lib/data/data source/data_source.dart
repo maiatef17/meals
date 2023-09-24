@@ -11,22 +11,22 @@ List<Category> category = [
   Category(
     'Italian',
     Colors.deepOrangeAccent,
-    'c1',
+    1,
   ),
-  Category('Quick & Easy', Colors.yellow, 'c2'),
-  Category('Hamburgers', Colors.blue, 'c3'),
-  Category('German', Colors.red, 'c4'),
-  Category('Light & Lovely', Colors.teal, 'c5'),
-  Category('Exotic', Colors.brown, 'c6'),
-  Category('Breakfast', Colors.orange, 'c7'),
-  Category('Asian', Colors.green, 'c8'),
-  Category('Frensh', Colors.pink, 'c9'),
-  Category('Summer', Colors.blueGrey, 'c10'),
+  Category('Quick & Easy', Colors.yellow, 2),
+  Category('Hamburgers', Colors.blue, 3),
+  Category('German', Colors.red, 4),
+  Category('Light & Lovely', Colors.teal, 5),
+  Category('Exotic', Colors.brown, 6),
+  Category('Breakfast', Colors.orange, 7),
+  Category('Asian', Colors.green, 8),
+  Category('Frensh', Colors.pink, 9),
+  Category('Summer', Colors.blueGrey, 10),
 ];
 
 List<Meal> meals = [
   Meal(
-      'c1',
+      1,
       'assets/images/7.webp',
       'Caprese Salad with Pesto Sauce',
       [
@@ -50,7 +50,7 @@ List<Meal> meals = [
       'Luxurious',
       '25 min'),
   Meal(
-      'c2',
+      2,
       'assets/images/1.png',
       'Salad with Smoked Salamon',
       [
@@ -75,7 +75,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c1',
+      1,
       'assets/images/20.jpg',
       ' Bruschetta',
       [
@@ -94,7 +94,7 @@ List<Meal> meals = [
       'Luxurious',
       '25 min'),
   Meal(
-      'c10',
+      10,
       'assets/images/8.webp',
       'Pasta Carbonara',
       [
@@ -118,7 +118,7 @@ List<Meal> meals = [
       'Affordable',
       '30 min'),
   Meal(
-      'c1',
+      1,
       'assets/images/9.jpg',
       'Margherita Pizza',
       [
@@ -143,7 +143,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c5',
+      5,
       'assets/images/21.jpg',
       ' Pasta Con Pomodoro E Basilico',
       [
@@ -166,7 +166,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c8',
+      8,
       'assets/images/1.jpg',
       'Salad with Smoked Salamon',
       [
@@ -190,7 +190,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c5',
+      5,
       'assets/images/22.jpg',
       'Lasagna ',
       [
@@ -214,7 +214,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c2',
+      2,
       'assets/images/3.webp',
       'Caprese Salad with Pesto Sauce',
       [
@@ -236,7 +236,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c8',
+      8,
       'assets/images/3.jpg',
       'Classic Pasta Amatriciana',
       [
@@ -259,7 +259,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c3',
+      3,
       'assets/images/23.jpg',
       'Teriyaki Burgers Recipe',
       [
@@ -283,7 +283,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c3',
+      3,
       'assets/images/24.jpg',
       'Mozzarella beef burger',
       ['1 Slice Ham', '1 Slice Pineapple', '1-2 Slices of Cheese', 'Butter'],
@@ -296,7 +296,7 @@ List<Meal> meals = [
       'Luxurious',
       '25 min'),
   Meal(
-      'c10',
+      10,
       'assets/images/3.jpg',
       'Classic Pasta Amatriciana',
       [
@@ -320,7 +320,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c3',
+      3,
       'assets/images/25.jpg',
       'Hatch Chile Smash Burger',
       [
@@ -342,7 +342,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c4',
+      4,
       'assets/images/26.jpg',
       'Sauerbraten',
       [
@@ -367,7 +367,7 @@ List<Meal> meals = [
       'Affordable',
       '30 min'),
   Meal(
-      'c4',
+      4,
       'assets/images/27.jpg',
       'Kartoffelpuffer',
       [
@@ -391,7 +391,7 @@ List<Meal> meals = [
       'Affordable',
       '240 min'),
   Meal(
-      'c4',
+      4,
       'assets/images/28.jpg',
       'Wurst',
       [
@@ -413,7 +413,7 @@ List<Meal> meals = [
       'Affordable',
       '25 min'),
   Meal(
-      'c7',
+      7,
       'assets/images/30.jpg',
       'Scrambled Eggs',
       [
@@ -435,7 +435,7 @@ List<Meal> meals = [
       'Affordable',
       '40 min'),
   Meal(
-      'c7',
+      7,
       'assets/images/31.jpg',
       'Fonio Pancakes',
       [
@@ -460,7 +460,7 @@ List<Meal> meals = [
       'Affordable',
       '60 min'),
   Meal(
-      'c7',
+      7,
       'assets/images/32.jpg',
       '“Inside-Out” Omelet',
       [
@@ -484,7 +484,7 @@ List<Meal> meals = [
       'Affordable',
       '40 min'),
   Meal(
-      'c9',
+      9,
       'assets/images/33.jpg',
       '“Steak frites',
       [
@@ -508,7 +508,7 @@ List<Meal> meals = [
       'Affordable',
       '30 min'),
   Meal(
-      'c9',
+      9,
       'assets/images/34.jpg',
       'Salmon en papillote',
       [
@@ -533,7 +533,7 @@ List<Meal> meals = [
       'Luxurious',
       '25 min'),
   Meal(
-      'c6',
+      6,
       'assets/images/36.jpg',
       'Sheet Pan Turkey Dinner',
       [
@@ -558,7 +558,7 @@ List<Meal> meals = [
       'Affordable',
       '60 min'),
   Meal(
-      'c9',
+      9,
       'assets/images/35.jpg',
       'Boeuf bourguignon',
       [
@@ -582,7 +582,7 @@ List<Meal> meals = [
       'Affordable',
       '60 min'),
   Meal(
-      'c6',
+      6,
       'assets/images/37.jpg',
       'Coconut Curry Chickpeas With Wilted Greens',
       [
@@ -606,7 +606,7 @@ List<Meal> meals = [
       'Affordable',
       '60 min'),
   Meal(
-      'c6',
+      6,
       'assets/images/38.jpg',
       'Pineapple Fried Rice',
       [
@@ -629,7 +629,7 @@ List<Meal> meals = [
       'Affordable',
       '60 min'),
   Meal(
-      'c10',
+      10,
       'assets/images/1.png',
       'Salad with Smoked Salamon',
       [
