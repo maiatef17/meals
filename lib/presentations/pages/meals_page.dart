@@ -16,13 +16,15 @@ class MealsPage extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         //leading: Icon(Icons.arrow_back_ios,color: Colors.white,),
-         actions: [
+        actions: [
           GestureDetector(
-            onTap: () => Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => AddMeal())),
-                child: Icon(Icons.add,color: Colors.white,),
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => AddMeal(category: category,))),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
-          
         ],
         backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
         title: Text(
@@ -34,7 +36,7 @@ class MealsPage extends StatelessWidget {
         //itemCount: meals.length,
         itemCount: meals
             .where((m) {
-              return m.mid == category.id;
+              return m.categoryId == category.id;
             })
             .toList()
             .length,
@@ -42,7 +44,7 @@ class MealsPage extends StatelessWidget {
         itemBuilder: (context, i) => MealsWidget(
           //  meal: meals[i],
           meal: meals.where((m) {
-            return m.mid == category.id;
+            return m.categoryId == category.id;
           }).toList()[i],
         ),
       ),

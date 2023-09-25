@@ -8,7 +8,8 @@ import 'package:pets_app/presentations/pages/categories_page.dart';
 import 'package:pets_app/presentations/pages/meals_page.dart';
 
 class AddMeal extends StatefulWidget {
-  const AddMeal({super.key});
+  const AddMeal({super.key,required this.category});
+  final category;
 
   @override
   State<AddMeal> createState() => _AddMealState();
@@ -162,7 +163,7 @@ class _AddMealState extends State<AddMeal> {
                 onPressed: () {
                   setState(() {
                     meals.add(Meal(
-                        11,
+                        widget.category.id,
                         imageurl.text,
                         name.text,
                         [ingredients.text],
@@ -171,11 +172,7 @@ class _AddMealState extends State<AddMeal> {
                         affordability.text,
                         time.text));
                   });
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MealsPage(
-                              category: category[10], meal: meals[10])));
+                  Navigator.pop(context);
                 },
                 child: Text('Save Meal', style: TextStyle(color: Colors.black)),
               ),

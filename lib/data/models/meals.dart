@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Meal {
-  bool isFav ;
-  final int mid;
+  bool isFav;
+  final int categoryId;
   final String imageurl, meal;
   final List<String> ingredients;
   final List<String> steps;
@@ -10,6 +10,7 @@ class Meal {
   final String affordability;
   final String time;
 
-  Meal(this.mid, this.imageurl, this.meal, this.ingredients, this.steps,
-      this.complexity, this.affordability, this.time, {this.isFav=false});
+  Meal(this.categoryId, this.imageurl, this.meal, this.ingredients, this.steps,
+      this.complexity, this.affordability, this.time,
+      {this.isFav = false});
 }

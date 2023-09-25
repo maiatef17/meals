@@ -25,7 +25,6 @@ class _categoriesPageState extends State<categoriesPage> {
       itemBuilder: (context, i) => CategoriesTile(
         category: category[i],
         meal: meals[i],
-        
       ),
       itemCount: category.length,
     ),
@@ -53,13 +52,16 @@ class _categoriesPageState extends State<categoriesPage> {
       ),
       backgroundColor: Color.fromARGB(255, 29, 27, 27),
       appBar: AppBar(
+        foregroundColor: Colors.white,
         actions: [
           GestureDetector(
             onTap: () => Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => AddCategory())),
-                child: Icon(Icons.add,color: Colors.white,),
+            child: Icon(
+              Icons.add,
+              color: Colors.white,
+            ),
           ),
-          
         ],
         backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
         title: Text(

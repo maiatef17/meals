@@ -36,13 +36,13 @@ class _AddCategoryState extends State<AddCategory> {
                   labelText: 'Category',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
-                     borderSide: BorderSide(color: Colors.white),
-                   ),
-                   focusedBorder: UnderlineInputBorder(
-                     borderSide: BorderSide(color: Colors.white),
-                   ),
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
+                  ),
                 ),
-               style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white),
               ),
               SizedBox(
                 height: 80,
@@ -54,12 +54,15 @@ class _AddCategoryState extends State<AddCategory> {
                     category.add(Category(name.text, Colors.tealAccent, id));
                     print(id);
                   });
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => categoriesPage()));
                 },
-                child: Text('Save Category',style: TextStyle(color: Colors.black),),
+                child: Text(
+                  'Save Category',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ],
           ),
