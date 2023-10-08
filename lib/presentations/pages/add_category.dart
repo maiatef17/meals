@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:pets_app/data/data%20source/data_source.dart';
+import 'package:pets_app/data/data%20source/category_local_data_source/category_local_data_source.dart';
 import 'package:pets_app/data/models/category.dart';
 import 'package:pets_app/presentations/pages/categories_page.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class AddCategory extends StatefulWidget {
   const AddCategory({super.key});
@@ -13,15 +16,18 @@ class AddCategory extends StatefulWidget {
 class _AddCategoryState extends State<AddCategory> {
   GlobalKey<FormState> key = GlobalKey();
   TextEditingController name = TextEditingController();
-  int id = 10;
+  Color selectedColor = Colors.deepPurple;
+  int id = Random().nextInt(1000);
+  CategoryLocalDSImpl categoryDS = CategoryLocalDSImpl();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 29, 27, 27),
+        backgroundColor: const Color.fromARGB(255, 29, 27, 27),
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
-          title: Text(
+          foregroundColor: Colors.white,
+          backgroundColor: const Color.fromRGBO(43, 42, 41, 0.965),
+          title: const Text(
             'Add Category',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
@@ -29,10 +35,18 @@ class _AddCategoryState extends State<AddCategory> {
         body: Form(
           key: key,
           child: ListView(
+            padding: EdgeInsets.all(10),
             children: [
               TextFormField(
                 controller: name,
-                decoration: InputDecoration(
+                validator: (String? text) {
+                  if (text == null || text.isEmpty) {
+                    return 'field is required';
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: const InputDecoration(
                   labelText: 'Category',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -42,24 +56,76 @@ class _AddCategoryState extends State<AddCategory> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
-                height: 80,
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const Text(
+                    'Color:',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  const SizedBox(width: 10),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                              title: const Text('Select a color'),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ColorPicker(
+                                    pickerColor: selectedColor,
+                                    onColorChanged: (Color color) {
+                                      setState(() {
+                                        selectedColor = color;
+                                      });
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: const Text('OK'),
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              ));
+                        },
+                      );
+                    },
+                    child: Container(
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: selectedColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 40,
               ),
               ElevatedButton(
                 onPressed: () {
-                  setState(() {
+                  if (key.currentState!.validate()) {
                     id++;
-                    category.add(Category(name.text, Colors.tealAccent, id));
+                    categoryDS
+                        .addCategory(Category(name.text, selectedColor, id));
                     print(id);
-                  });
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => categoriesPage()));
+                    ;
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const categoriesPage()));
+                  }
                 },
-                child: Text(
+                child: const Text(
                   'Save Category',
                   style: TextStyle(color: Colors.black),
                 ),

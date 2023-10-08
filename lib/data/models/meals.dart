@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
 class Meal {
   bool isFav;
   final int categoryId;
   final String imageurl, meal;
-  final List<String> ingredients;
-  final List<String> steps;
+  final String ingredients;
+  final  String steps;
   final String complexity;
   final String affordability;
   final String time;
@@ -13,4 +11,32 @@ class Meal {
   Meal(this.categoryId, this.imageurl, this.meal, this.ingredients, this.steps,
       this.complexity, this.affordability, this.time,
       {this.isFav = false});
+
+  Map<String, dynamic> toMap() {
+    return {
+      'isFav': isFav,
+      'categoryId': categoryId,
+      'imageurl': imageurl,
+      'meal': meal,
+      'ingredients': ingredients,
+      'steps': steps,
+      'complexity': complexity,
+      'affordability': affordability,
+      'time': time,
+    };
+  }
+
+  factory Meal.fromMap(Map<String, dynamic> map) {
+    return Meal(
+      map['categoryId'],
+      map['imageurl'],
+      map['meal'],
+      map['ingredients'],
+      map['steps'],
+      map['complexity'],
+      map['affordability'],
+      map['time'],
+      isFav: map['isFav'],
+    );
+  }
 }

@@ -1,15 +1,12 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:pets_app/data/data%20source/data_source.dart';
+import 'package:pets_app/data/data%20source/meal_local_data_source%20copy/meal_local_data_source.dart';
 import 'package:pets_app/data/models/category.dart';
 import 'package:pets_app/data/models/meals.dart';
-import 'package:pets_app/presentations/pages/categories_page.dart';
 import 'package:pets_app/presentations/pages/meals_page.dart';
 
 class AddMeal extends StatefulWidget {
-  const AddMeal({super.key,required this.category});
-  final category;
+  const AddMeal({super.key, required this.category});
+  final Category category;
 
   @override
   State<AddMeal> createState() => _AddMealState();
@@ -24,14 +21,16 @@ class _AddMealState extends State<AddMeal> {
   TextEditingController complexity = TextEditingController();
   TextEditingController affordability = TextEditingController();
   TextEditingController time = TextEditingController();
+  MealLocalDSImpl mealDS = MealLocalDSImpl();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 29, 27, 27),
+        backgroundColor: const Color.fromARGB(255, 29, 27, 27),
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
-          title: Text(
+          foregroundColor: Colors.white,
+          backgroundColor: const Color.fromRGBO(43, 42, 41, 0.965),
+          title: const Text(
             'Add Meal',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
@@ -42,7 +41,7 @@ class _AddMealState extends State<AddMeal> {
             children: [
               TextFormField(
                 controller: name,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'meal',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -52,14 +51,14 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 controller: imageurl,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'image',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -69,14 +68,14 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 controller: ingredients,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'ingredients',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -86,14 +85,14 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 controller: steps,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'steps',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -103,14 +102,14 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 controller: complexity,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'complexity',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -120,14 +119,14 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 controller: affordability,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'affordability',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -137,14 +136,14 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
                 controller: time,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'time',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
@@ -154,27 +153,32 @@ class _AddMealState extends State<AddMeal> {
                     borderSide: BorderSide(color: Colors.white),
                   ),
                 ),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 80,
               ),
               ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    meals.add(Meal(
-                        widget.category.id,
-                        imageurl.text,
-                        name.text,
-                        [ingredients.text],
-                        [steps.text],
-                        complexity.text,
-                        affordability.text,
-                        time.text));
-                  });
-                  Navigator.pop(context);
+                onPressed: () async {
+                  await mealDS.addMeal(Meal(
+                      widget.category.id,
+                      imageurl.text,
+                      name.text,
+                      ingredients.text,
+                      steps.text,
+                      complexity.text,
+                      affordability.text,
+                      time.text));
+
+                  await Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MealsPage(
+                                category: widget.category,
+                              )));
                 },
-                child: Text('Save Meal', style: TextStyle(color: Colors.black)),
+                child: const Text('Save Meal',
+                    style: TextStyle(color: Colors.black)),
               ),
             ],
           ),

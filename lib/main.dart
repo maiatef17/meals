@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pets_app/presentations/pages/categories_page.dart';
-import 'package:pets_app/presentations/pages/favorites_page.dart';
-import 'package:pets_app/presentations/pages/form_page.dart';
+import 'package:pets_app/presentations/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,10 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,
       ),
-      home: categoriesPage(),
+      home: const SplashScreen(),
     );
   }
 }

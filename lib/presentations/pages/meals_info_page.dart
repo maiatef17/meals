@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pets_app/data/data%20source/data_source.dart';
+import 'package:pets_app/data/data%20source/meal_local_data_source%20copy/meal_local_data_source.dart';
 import 'package:pets_app/data/models/meals.dart';
 import 'package:pets_app/presentations/pages/favorites_page.dart';
 
@@ -20,9 +20,10 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
+        foregroundColor: Colors.white,
+        backgroundColor: const Color.fromRGBO(43, 42, 41, 0.965),
         title: Text(
-          '${widget.meals.meal}',
+          widget.meals.meal,
           style: const TextStyle(color: Colors.white),
         ),
       ),
@@ -34,7 +35,7 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
               borderRadius:
                   const BorderRadius.vertical(bottom: Radius.circular(30)),
               child: Image.asset(
-                '${widget.meals.imageurl}',
+                widget.meals.imageurl,
                 height: 350,
                 width: MediaQuery.of(context).size.width,
                 fit: BoxFit.cover,
@@ -45,15 +46,15 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     '',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.orange,
                     ),
                   ),
-                  Text(
+                  const Text(
                     'Ingredients:',
                     style: TextStyle(
                       fontSize: 20,
@@ -62,10 +63,10 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
                     ),
                   ),
                   Text(
-                    '${widget.meals.ingredients}',
-                    style: TextStyle(color: Colors.white),
+                    widget.meals.ingredients,
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  Text(
+                  const Text(
                     'Steps:',
                     style: TextStyle(
                       fontSize: 20,
@@ -74,8 +75,8 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
                     ),
                   ),
                   Text(
-                    '${widget.meals.steps}',
-                    style: TextStyle(color: Colors.white),
+                    widget.meals.steps,
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ],
               ),
@@ -86,6 +87,9 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
+            MealLocalDSImpl()
+                .toggleMealFavorite(widget.meals.categoryId.toString());
+
             widget.meals.isFav = !widget.meals.isFav;
           });
           ScaffoldMessenger.of(context).clearSnackBars();
@@ -105,10 +109,10 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
             );
           }
         },
-        child: widget.meals.isFav
-            ? Icon(Icons.favorite)
-            : Icon(Icons.favorite_border),
         backgroundColor: Colors.orange,
+        child: widget.meals.isFav
+            ? const Icon(Icons.favorite)
+            : const Icon(Icons.favorite_border),
       ),
     );
   }

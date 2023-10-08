@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pets_app/data/data%20source/data_source.dart';
 import 'package:pets_app/data/models/meals.dart';
 import 'package:pets_app/presentations/pages/categories_page.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({super.key});
-  
 
   @override
   State<FormPage> createState() => _FormPageState();
@@ -22,7 +20,7 @@ class _FormPageState extends State<FormPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(43, 42, 41, 0.965),
-        title: Text(
+        title: const Text(
           'Sign Up Page',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -40,11 +38,11 @@ class _FormPageState extends State<FormPage> {
                     return null;
                   }
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Name',
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               TextFormField(
@@ -60,10 +58,10 @@ class _FormPageState extends State<FormPage> {
                       return null;
                     }
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               TextFormField(
@@ -75,25 +73,26 @@ class _FormPageState extends State<FormPage> {
                       return null;
                     }
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Password',
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               ElevatedButton(
                 onPressed: () {
                   if (key.currentState!.validate()) {
-                     Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => categoriesPage(),
-              ),
-            );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => categoriesPage(),
+                      ),
+                    );
                   }
                 },
-                style: ElevatedButton.styleFrom(backgroundColor:Color.fromRGBO(43, 42, 41, 0.965)),
-                child: Text(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(43, 42, 41, 0.965)),
+                child: const Text(
                   'Sign Up',
                   style: TextStyle(color: Colors.white),
                 ),
