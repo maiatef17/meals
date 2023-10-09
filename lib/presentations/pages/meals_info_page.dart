@@ -87,9 +87,7 @@ class _MealsInfoPageState extends State<MealsInfoPage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            MealLocalDSImpl()
-                .toggleMealFavorite(widget.meals.categoryId.toString());
-
+            MealLocalDSImpl().toggleMealFavorite(widget.meals.id.toString());
             widget.meals.isFav = !widget.meals.isFav;
           });
           ScaffoldMessenger.of(context).clearSnackBars();

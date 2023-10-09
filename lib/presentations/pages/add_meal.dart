@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:pets_app/data/data%20source/meal_local_data_source%20copy/meal_local_data_source.dart';
 import 'package:pets_app/data/models/category.dart';
@@ -13,6 +15,7 @@ class AddMeal extends StatefulWidget {
 }
 
 class _AddMealState extends State<AddMeal> {
+  int id = Random().nextInt(1000);
   GlobalKey<FormState> key = GlobalKey();
   TextEditingController name = TextEditingController();
   TextEditingController imageurl = TextEditingController();
@@ -160,15 +163,19 @@ class _AddMealState extends State<AddMeal> {
               ),
               ElevatedButton(
                 onPressed: () async {
+                  id++;
                   await mealDS.addMeal(Meal(
-                      widget.category.id,
-                      imageurl.text,
-                      name.text,
-                      ingredients.text,
-                      steps.text,
-                      complexity.text,
-                      affordability.text,
-                      time.text));
+                    id,
+                    widget.category.id,
+                    imageurl.text,
+                    name.text,
+                    ingredients.text,
+                    steps.text,
+                    complexity.text,
+                    affordability.text,
+                    time.text,
+                  ));
+                  print(id);
 
                   await Navigator.pushReplacement(
                       context,

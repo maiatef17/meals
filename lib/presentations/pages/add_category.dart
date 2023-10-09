@@ -118,7 +118,7 @@ class _AddCategoryState extends State<AddCategory> {
                     categoryDS
                         .addCategory(Category(name.text, selectedColor, id));
                     print(id);
-                    ;
+
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(

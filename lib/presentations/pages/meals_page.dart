@@ -27,7 +27,7 @@ class _MealsPageState extends State<MealsPage> {
         actions: [
           GestureDetector(
             onTap: () async {
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: (context) => AddMeal(
@@ -56,13 +56,16 @@ class _MealsPageState extends State<MealsPage> {
             } else if (snapshot.hasError) {
               return Text('Error: ${snapshot.error}');
             } else {
-              final List<Meal> meals = snapshot.data!
-                  .where((meal) => meal.categoryId == widget.category.id)
-                  .toList();
+              final List<Meal> meals = snapshot.data!;
               return ListView.builder(
-                itemCount: meals.length,
+                itemCount: meals
+                    .where((meal) => meal.categoryId == widget.category.id)
+                    .toList()
+                    .length,
                 itemBuilder: (context, i) => MealsTile(
-                  meal: meals[i],
+                  meal: meals
+                      .where((meal) => meal.categoryId == widget.category.id)
+                      .toList()[i],
                 ),
               );
             }

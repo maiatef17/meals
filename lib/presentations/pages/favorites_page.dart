@@ -10,28 +10,33 @@ class FavoritesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 29, 27, 27),
-      body: FutureBuilder(
-          future: MealLocalDSImpl().getMeal(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            }
-            List<Meal> meals = snapshot.data!;
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1, mainAxisSpacing: 16),
-              itemBuilder: (context, i) => MealsTile(
-                  meal: meals
-                      .where((element) => element.isFav == true)
-                      .toList()[i]),
-              itemCount: meals
-                  .where((element) => element.isFav == true)
-                  .toList()
-                  .length,
-            );
-          }),
+      body: FutureBuilder<List<Meal>>(
+        future: MealLocalDSImpl().getMeal(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+
+          List<Meal> meals = snapshot.data!;
+
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
+            ),
+            itemBuilder: (context, index) {
+              Meal meal =
+                  meals.where((meal) => meal.isFav == true).toList()[index];
+              return MealsTile(meal: meal);
+            },
+            itemCount:
+                meals.where((meal) => meal.isFav == true).toList().length,
+          );
+        },
+      ),
     );
   }
 }

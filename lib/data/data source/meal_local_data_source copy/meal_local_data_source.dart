@@ -40,11 +40,11 @@ class MealLocalDSImpl implements MealLocalDS {
   }
 
   @override
-  Future<void> toggleMealFavorite(String categoryId) async {
+  Future<void> toggleMealFavorite(String id) async {
     final meals = await getMeal();
     Meal? meal;
     for (int i = 0; i < meals.length; i++) {
-      if (meals[i].categoryId.toString() == categoryId) {
+      if (meals[i].id.toString() == id) {
         meal = meals[i];
       }
     }
@@ -53,7 +53,7 @@ class MealLocalDSImpl implements MealLocalDS {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(mealsKey);
     for (int i = 0; i < meals.length; i++) {
-      if (meals[i].categoryId.toString() != categoryId) {
+      if (meals[i].id.toString() != id) {
         await addMeal(meals[i]);
       } else {
         await addMeal(meal);
